@@ -5,21 +5,10 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import { AboutPage, NewsPage, ProtectionPage, SurvivorHubPage, VerificationPage } from "./pages/PortfolioPages";
-
-function Router() {
-  return <Switch>
-    <Route path="/" component={Home} />
-    <Route path="/verification" component={VerificationPage} />
-    <Route path="/protection" component={ProtectionPage} />
-    <Route path="/survivor" component={SurvivorHubPage} />
-    <Route path="/news" component={NewsPage} />
-    <Route path="/about" component={AboutPage} />
-    <Route path="/404" component={NotFound} />
-    <Route component={NotFound} />
-  </Switch>;
-}
-
-export default function App() {
-  return <ErrorBoundary><ThemeProvider defaultTheme="light"><TooltipProvider><Toaster /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
-}
+import VerificationPage from "./pages/VerificationPage";
+import ProtectionPage from "./pages/ProtectionPage";
+import SurvivorHubPage from "./pages/SurvivorHubPage";
+import NewsPage from "./pages/NewsPage";
+import AboutPage from "./pages/AboutPage";
+function Router() { return <Switch><Route path="/" component={Home} /><Route path="/verification" component={VerificationPage} /><Route path="/protection" component={ProtectionPage} /><Route path="/survivor" component={SurvivorHubPage} /><Route path="/news" component={NewsPage} /><Route path="/about" component={AboutPage} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch>; }
+export default function App() { return <ErrorBoundary><ThemeProvider defaultTheme="light"><TooltipProvider><Toaster /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>; }

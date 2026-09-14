@@ -1,18 +1,14 @@
 import { useState, type ReactNode } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { PspLogo } from "@/components/PspLogo";
+import { useCopy } from "@/lib/i18n";
 
 export type Language = "EN" | "FR" | "SW";
 
-const labels = {
-  EN: { verification: "Verification Portfolio", protection: "Protection Portfolio", survivor: "Survivor Hub", news: "World News", about: "About Us", cta: "Verify an Agency", language: "Language" },
-  FR: { verification: "Portefeuille de vérification", protection: "Portefeuille de protection", survivor: "Centre des survivants", news: "Actualités mondiales", about: "À propos", cta: "Vérifier une agence", language: "Langue" },
-  SW: { verification: "Uthibitishaji", protection: "Ulinzi", survivor: "Kituo cha Waathirika", news: "Habari za dunia", about: "Kuhusu sisi", cta: "Thibitisha wakala", language: "Lugha" },
-};
 
 export function SiteShell({ children, active, language = "EN", onLanguageChange }: { children: ReactNode; active?: string; language?: Language; onLanguageChange?: (language: Language) => void }) {
   const [open, setOpen] = useState(false);
-  const t = labels[language];
+  const t = useCopy(language).nav;
   const nav = [
     ["/verification", t.verification],
     ["/protection", t.protection],
@@ -43,7 +39,7 @@ export function SiteShell({ children, active, language = "EN", onLanguageChange 
       <footer className="bg-[#061528] py-10 text-slate-400">
         <div className="container">
           <div className="flex flex-col justify-between gap-7 border-b border-white/10 pb-8 lg:flex-row lg:items-center">
-            <div><PspLogo /><p className="mt-4 max-w-md text-xs leading-6 text-slate-500">A youth-led initiative by IMI Initiative. Directed by Captain Terrence Fang, JP. Building public trust in legal migration channels across Africa and the world.</p></div>
+            <div><PspLogo /><p className="mt-4 max-w-md text-xs leading-6 text-slate-500">{useCopy(language).footer}</p></div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-[10px] font-semibold uppercase tracking-[0.13em] text-slate-400 sm:grid-cols-3">{nav.map(([href, label]) => <a key={href} href={href} className="transition hover:text-white">{label}</a>)}</div>
           </div>
           <div className="flex flex-col justify-between gap-3 pt-6 text-[10px] leading-5 text-slate-500 sm:flex-row"><span>© 2026 Project Safe Passage · IMI Initiative</span><span><a href="mailto:fangterrence20@gmail.com" className="transition hover:text-white">fangterrence20@gmail.com</a> · Use official channels to report urgent danger.</span></div>
